@@ -64,8 +64,8 @@ os.makedirs("models", exist_ok=True)
 joblib.dump(model, "models/trained_model_enhanced.pkl")
 print("💾 Model saved to: models/trained_model_enhanced.pkl")
 
-# Create visualizations folder
-os.makedirs("visualizations", exist_ok=True)
+# Create model_visualizations folder
+os.makedirs("model_visualizations", exist_ok=True)
 
 # --- Feature Importance ---
 importances = model.feature_importances_
@@ -77,8 +77,8 @@ sns.barplot(x=sorted_features, y=importances[indices])
 plt.title("🔍 Feature Importance (Enhanced Model)")
 plt.xticks(rotation=45)
 plt.tight_layout()
-plt.savefig("visualizations/feature_importance_enhanced.png")
-print("📊 Feature importance saved to: visualizations/feature_importance_enhanced.png")
+plt.savefig("model_visualizations/feature_importance_enhanced.png")
+print("📊 Feature importance saved to: model_visualizations/feature_importance_enhanced.png")
 plt.show()
 
 # --- Actual vs Predicted ---
@@ -89,7 +89,7 @@ plt.xlabel("Actual AQI (Next 24h)")
 plt.ylabel("Predicted AQI")
 plt.title("🎯 Actual vs Predicted AQI")
 plt.tight_layout()
-plt.savefig("visualizations/actual_vs_predicted.png")
+plt.savefig("model_visualizations/actual_vs_predicted.png")
 plt.show()
 
 # --- Residual Plot ---
@@ -99,7 +99,7 @@ sns.histplot(residuals, bins=30, kde=True, color='purple')
 plt.title("🔧 Distribution of Residuals (Errors)")
 plt.xlabel("Residuals (Actual - Predicted)")
 plt.tight_layout()
-plt.savefig("visualizations/residuals_distribution.png")
+plt.savefig("model_visualizations/residuals_distribution.png")
 plt.show()
 
 # --- Correlation Heatmap ---
@@ -108,7 +108,7 @@ corr = df[features + [target]].corr()
 sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
 plt.title("🧊 Correlation Heatmap")
 plt.tight_layout()
-plt.savefig("visualizations/correlation_heatmap.png")
+plt.savefig("model_visualizations/correlation_heatmap.png")
 plt.show()
 
 # --- Error Line Plot (Sample) ---
@@ -120,5 +120,5 @@ plt.xlabel("Sample Index")
 plt.ylabel("AQI")
 plt.legend()
 plt.tight_layout()
-plt.savefig("visualizations/sample_line_plot.png")
+plt.savefig("model_visualizations/sample_line_plot.png")
 plt.show()
